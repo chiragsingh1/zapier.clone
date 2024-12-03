@@ -4,7 +4,7 @@ import { Kafka } from "kafkajs";
 const client = new PrismaClient();
 
 const kafka = new Kafka({
-    clientId: "outbox-processor",
+    clientId: "outbox-processor-2",
     brokers: ["localhost:9092"],
 });
 
@@ -17,13 +17,15 @@ async function main() {
     while (1) {
         const pendingRows = await client.zapRunOutbox.findMany({
             take: 10,
+            where: {},
         });
+        console.log(pendingRows);
 
         producer.send({
             topic: TOPIC_NAME,
             messages: pendingRows.map((r) => {
                 return {
-                    value: r.zapRunId,
+                    value: JSON.stringify({ zapRunId: r.zapRunId, stage: 0 }),
                 };
             }),
         });
@@ -35,6 +37,7 @@ async function main() {
                 },
             },
         });
+        await new Promise((r) => setTimeout(r, 3000));
     }
 }
 

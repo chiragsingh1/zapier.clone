@@ -3,13 +3,22 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "tsc -b && node dist/index.js"
+        "dev": "tsc -b && node dist/index.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "kafkajs": "^2.2.4"
+        "@prisma/client": "^6.0.1",
+        "@solana/web3.js": "^1.95.8",
+        "@types/nodemailer": "^6.4.17",
+        "bs58": "^6.0.0",
+        "dotenv": "^16.4.7",
+        "kafkajs": "^2.2.4",
+        "nodemailer": "^6.9.16"
+    },
+    "devDependencies": {
+        "prisma": "^6.0.1"
     }
 }
