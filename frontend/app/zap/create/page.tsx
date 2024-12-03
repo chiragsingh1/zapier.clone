@@ -101,7 +101,6 @@ export default function () {
                 <div className="w-full pt-2 pb-2">
                     {selectedActions.map((action, index) => (
                         <div className="pt-2 flex justify-center">
-                            {" "}
                             <ZapCell
                                 onClick={() => {
                                     setSelectedModalIndex(action.index);
@@ -244,7 +243,7 @@ function Modal({
                             />
                         )}
 
-                        {step === 1 && selectedAction?.id === "send-sol" && (
+                        {step === 1 && selectedAction?.id === "sol" && (
                             <SolanaSelector
                                 setMetadata={(metadata) => {
                                     onSelect({
